@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio BTS SIO – Nolan Ruby</title>
+
+    <meta name="description" content="Portfolio de Nolan Ruby, étudiant en BTS SIO option SISR. Découvrez mes projets, mes compétences en administration systèmes, réseaux et cybersécurité, ainsi que ma veille technologique." />
+    <meta property="og:title" content="Portfolio BTS SIO SISR – Nolan Ruby" />
+    <meta property="og:description" content="Découvrez mes projets (PPE), mes compétences et ma veille technologique en infrastructure et cybersécurité." />
+    <meta property="og:type" content="website" />
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        /* ═══════════════════════════════════════
+           VARIABLES & BASE
+        ═══════════════════════════════════════ */
+        :root {
+            --indigo:       #6366f1;
+            --indigo-light: #a5b4fc;
+            --indigo-dim:   rgba(99,102,241,0.18);
+            --green:        #10b981;
+            --green-light:  #6ee7b7;
+            --amber:        #f59e0b;
+            --amber-light:  #fcd34d;
+            --surface-1:    rgba(15,23,42,0.97);
+            --surface-2:    rgba(30,41,59,0.7);
+            --text-primary: #f1f5f9;
+            --text-muted:   #94a3b8;
+            --text-faint:   #64748b;
+            --border:       rgba(99,102,241,0.2);
+            --border-hover: rgba(99,102,241,0.55);
+            --radius-md:    12px;
+            --radius-lg:    16px;
+            --transition:   0.25s ease;
+        }
+
+        /* ═══════════════════════════════════════
+           SCROLL PROGRESS BAR
+        ═══════════════════════════════════════ */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--indigo), #8b5cf6, var(--green));
+            z-index: 9999;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 8px rgba(99,102,241,0.6);
+        }
+
+        /* ═══════════════════════════════════════
+           NAVIGATION AMÉLIORÉE
+        ═══════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1100 !important;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10,15,30,0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(99,102,241,0.12);
+            transition: background var(--transition), box-shadow var(--transition);
+        }
+        nav.scrolled {
+            background: rgba(10,15,30,0.97);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+        }
+
+        /* Logo / nom dans la nav */
+        .nav-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .nav-brand span { color: var(--indigo); }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li { position: relative; }
+
+        nav ul li > a {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: background var(--transition), color var(--transition);
+        }
+        nav ul li > a:hover,
+        nav ul li > a.active {
+            background: var(--indigo-dim);
+            color: #fff;
+        }
+        nav ul li > a .arrow {
+            font-size: 0.55rem;
+            opacity: 0.6;
+            transition: transform var(--transition);
+        }
+        nav ul li:hover > a .arrow { transform: rotate(180deg); }
+
+        /* Dropdown */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--surface-1);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            min-width: 172px;
+            z-index: 999;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            animation: dropIn 0.18s ease;
+        }
+        @keyframes dropIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+            to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        nav ul li:hover .dropdown-menu,
+        nav ul li:focus-within .dropdown-menu { display: block; }
+        .dropdown-menu li { display: block; }
+        .dropdown-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 18px;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: background var(--transition), color var(--transition);
+        }
+        .dropdown-menu li a:hover {
+            background: var(--indigo-dim);
+            color: #fff;
+        }
+
+        /* Hamburger (mobile) */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+            z-index: 1200;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ═══════════════════════════════════════
+           PAGE OVERLAYS
+        ═══════════════════════════════════════ */
+        .page-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: #0f172a;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .page-overlay.active {
+            display: block;
+            animation: fadeInPage 0.3s ease forwards;
+        }
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 96px 24px 80px;
+        }
+
+        .page-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99,102,241,0.1);
+            border: 1px solid var(--border);
+            color: var(--indigo-light);
+            padding: 9px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-family: inherit;
+            margin-bottom: 44px;
+            transition: background var(--transition), border-color var(--transition), transform var(--transition);
+        }
+        .page-back:hover {
+            background: rgba(99,102,241,0.22);
+            border-color: var(--border-hover);
+            transform: translateX(-3px);
+        }
+
+        /* ═══════════════════════════════════════
+           INTRO BLOCK (partagé PPE / E6)
+        ═══════════════════════════════════════ */
+        .ppe-intro {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 26px 30px;
+            margin: 28px 0 36px;
+            color: var(--text-muted);
+            line-height: 1.75;
+            font-size: 0.92rem;
+        }
+        .ppe-intro strong { color: #e2e8f0; }
+
+        /* ═══════════════════════════════════════
+           PPE CARDS
+        ═══════════════════════════════════════ */
+        .ppe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 22px;
+        }
+        .ppe-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+        }
+        .ppe-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+        }
+        .ppe-number {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--indigo);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .ppe-card h3 { font-size: 1rem; color: var(--text-primary); margin-bottom: 10px; }
+        .ppe-card p  { font-size: 0.86rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; flex-grow: 1; }
+
+        .ppe-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+        .ppe-tags .tag {
+            background: rgba(99,102,241,0.1);
+            color: var(--indigo-light);
+            border: 1px solid rgba(99,102,241,0.25);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.73rem;
+            font-weight: 500;
+        }
+
+        .ppe-card .btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+        .ppe-card .btn-small {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 7px 15px;
+            border-radius: 7px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid rgba(99,102,241,0.35);
+            color: var(--indigo-light);
+            background: rgba(99,102,241,0.08);
+            transition: background var(--transition), border-color var(--transition);
+            cursor: pointer;
+            justify-content: center;
+            width: 100%;
+        }
+        .ppe-card .btn-small:hover { background: rgba(99,102,241,0.22); border-color: rgba(99,102,241,0.6); }
+        .ppe-card .btn-primary-small {
+            background: linear-gradient(135deg, var(--indigo), #8b5cf6);
+            color: #fff;
+            border-color: transparent;
+        }
+        .ppe-card .btn-primary-small:hover { opacity: 0.85; background: linear-gradient(135deg, var(--indigo), #8b5cf6); }
+
+        /* ═══════════════════════════════════════
+           E6 TABLES
+        ═══════════════════════════════════════ */
+        .e6-bloc { margin-bottom: 44px; }
+        .e6-bloc h3 {
+            font-size: 1.05rem;
+            color: #e2e8f0;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .e6-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+        .e6-table th {
+            background: rgba(99,102,241,0.12);
+            color: var(--indigo-light);
+            padding: 11px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .e6-table th:first-child { border-radius: 8px 0 0 8px; }
+        .e6-table th:last-child  { border-radius: 0 8px 8px 0; }
+        .e6-table td {
+            padding: 12px 16px;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            vertical-align: middle;
+        }
+        .e6-table tbody tr { transition: background var(--transition); }
+        .e6-table tbody tr:hover td { background: rgba(99,102,241,0.06); }
+
+        .badge-ok {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: rgba(16,185,129,0.12);
+            color: var(--green-light);
+            border: 1px solid rgba(16,185,129,0.28);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.73rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .badge-wip {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: rgba(245,158,11,0.1);
+            color: var(--amber-light);
+            border: 1px solid rgba(245,158,11,0.28);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.73rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Compteur de compétences validées */
+        .e6-stats {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .e6-stat {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px 22px;
+            text-align: center;
+            min-width: 110px;
+        }
+        .e6-stat .stat-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--indigo-light);
+            display: block;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .e6-stat .stat-label { font-size: 0.74rem; color: var(--text-faint); }
+
+        /* ═══════════════════════════════════════
+           VEILLE CARDS
+        ═══════════════════════════════════════ */
+        .veille-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 22px;
+            margin-top: 32px;
+        }
+        .veille-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+        }
+        .veille-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+        }
+        .veille-card .tag-category {
+            display: inline-block;
+            background: var(--indigo-dim);
+            color: var(--indigo-light);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .veille-card .veille-icon { font-size: 1.7rem; margin-bottom: 12px; }
+        .veille-card h3 { font-size: 1.02rem; color: var(--text-primary); margin-bottom: 10px; }
+        .veille-card p  { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 18px; flex-grow: 1; }
+        .veille-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+        .veille-source {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(16,185,129,0.08);
+            color: var(--green-light);
+            border: 1px solid rgba(16,185,129,0.22);
+            border-radius: 6px;
+            padding: 3px 9px;
+            font-size: 0.73rem;
+            font-weight: 500;
+        }
+
+        /* ═══════════════════════════════════════
+           BACK TO TOP
+        ═══════════════════════════════════════ */
+        #back-to-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--indigo), #8b5cf6);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 900;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 16px rgba(99,102,241,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #back-to-top:hover {
+            box-shadow: 0 8px 24px rgba(99,102,241,0.6);
+            transform: translateY(-3px);
+        }
+
+        /* ═══════════════════════════════════════
+           TYPING EFFECT (hero)
+        ═══════════════════════════════════════ */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 0.75s step-end infinite;
+            color: var(--indigo);
+            margin-left: 1px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* ═══════════════════════════════════════
+           🌟 NOUVEAU : CSS DU FORMULAIRE
+        ═══════════════════════════════════════ */
+        .custom-form {
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            text-align: left;
+        }
+        .custom-form input, .custom-form textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+        }
+        .custom-form input::placeholder, .custom-form textarea::placeholder {
+            color: var(--text-faint);
+        }
+        .custom-form input:focus, .custom-form textarea:focus {
+            outline: none;
+            border-color: var(--indigo-light);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+        }
+        .custom-form button {
+            width: 100%;
+            justify-content: center;
+            font-size: 1rem;
+            padding: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE NAV
+        ═══════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            nav ul {
+                position: fixed;
+                top: 64px; left: 0; right: 0;
+                background: rgba(10,15,30,0.98);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 12px 0 20px;
+                border-bottom: 1px solid var(--border);
+                transform: translateY(-120%);
+                transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+                z-index: 1099;
+            }
+            nav ul.open { transform: translateY(0); }
+            nav ul li > a { padding: 12px 24px; border-radius: 0; }
+            .dropdown-menu {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                background: rgba(99,102,241,0.06);
+                animation: none;
+            }
+            .dropdown-menu li a { padding: 10px 36px; }
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE TABLES
+        ═══════════════════════════════════════ */
+        @media (max-width: 600px) {
+            .e6-table thead { display: none; }
+            .e6-table tr {
+                display: block;
+                background: var(--surface-2);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-md);
+                margin-bottom: 12px;
+                padding: 12px;
+            }
+            .e6-table td {
+                display: flex;
+                align-items: flex-start;
+                gap: 8px;
+                padding: 6px 0;
+                border: none;
+                font-size: 0.82rem;
+            }
+            .e6-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: var(--indigo-light);
+                min-width: 80px;
+                font-size: 0.72rem;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+                padding-top: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress" role="progressbar" aria-label="Progression de lecture"></div>
+
+    <div class="bg-animation" aria-hidden="true">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+
+    <nav id="main-nav" role="navigation" aria-label="Navigation principale">
+        <a href="#accueil" class="nav-brand">Nolan<span>.</span>Ruby</a>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul id="nav-menu" role="menubar">
+            <li role="none"><a href="#accueil" role="menuitem">Accueil</a></li>
+            <li role="none"><a href="#apropos" role="menuitem">À propos</a></li>
+            <li role="none">
+                <a href="#projets" id="nav-projets" role="menuitem" aria-haspopup="true">
+                    Projets <span class="arrow" aria-hidden="true">▼</span>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-label="Sous-menu Projets">
+                    <li role="none">
+                        <a href="#" role="menuitem" onclick="openPage('page-ppe'); return false;">
+                            📁 PPE
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#" role="menuitem" onclick="openPage('page-e6'); return false;">
+                            📋 E6
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li role="none"><a href="#competences" role="menuitem">Compétences</a></li>
+            <li role="none">
+                <a href="#" id="nav-veille" role="menuitem" onclick="openPage('page-veille'); return false;">
+                    Veille Techno
+                </a>
+            </li>
+            <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div id="page-veille" class="page-overlay" role="dialog" aria-modal="true" aria-label="Veille Technologique">
+        <div class="page-inner">
+            <button class="page-back" onclick="closePage('page-veille')" aria-label="Retour au portfolio">
+                ← Retour au portfolio
+            </button>
+
+            <div class="section-header" style="text-align:left;padding-bottom:0">
+                <div class="section-label">BTS SIO SISR – Examen</div>
+                <h2 style="margin-bottom:8px">Veille Technologique</h2>
+                <p style="color:#94a3b8;max-width:680px;font-size:0.95rem;margin-bottom:0">
+                    Suivi régulier des évolutions en cybersécurité, systèmes et réseaux. Cette veille alimente mon dossier de compétences pour l'épreuve E5.
+                </p>
+            </div>
+
+            <div class="veille-grid">
+                </div>
+        </div>
+    </div>
+
+    <div id="page-ppe" class="page-overlay" role="dialog" aria-modal="true" aria-label="Projets PPE">
+        <div class="page-inner">
+            <button class="page-back" onclick="closePage('page-ppe')" aria-label="Retour au portfolio">
+                ← Retour au portfolio
+            </button>
+
+            <div class="section-header" style="text-align:left;padding-bottom:0">
+                <div class="section-label">BTS SIO SISR</div>
+                <h2 style="margin-bottom:8px">Projets PPE</h2>
+                <p style="color:#94a3b8;max-width:720px;font-size:0.95rem;margin-bottom:0">
+                    Mes <strong style="color:#e2e8f0">Pratiques Professionnelles Encadrées</strong> réalisées durant ma formation. Chaque PPE correspond à une mise en situation professionnelle évaluée.
+                </p>
+            </div>
+
+            <div class="ppe-intro">
+                Les PPE sont des projets techniques réalisés en conditions professionnelles, couvrant l'ensemble des compétences du référentiel BTS SIO option SISR : administration systèmes, sécurisation des infrastructures, gestion des services réseau et documentation technique.
+            </div>
+
+            <div class="ppe-grid">
+
+                <article class="ppe-card">
+                    <div class="ppe-number">PPE 1</div>
+                    <h3>🛡️ Infrastructure réseau sécurisée</h3>
+                    <p>Conception et déploiement d'une infrastructure réseau complète avec segmentation VLAN, pare-feu pfSense, et VPN IPsec pour l'accès distant sécurisé.</p>
+                    <div class="ppe-tags">
+                        <span class="tag">pfSense</span>
+                        <span class="tag">VPN</span>
+                        <span class="tag">VLAN</span>
+                        <span class="tag">IPsec</span>
+                    </div>
+                    <div class="btn-row">
+                        <a href="fichiers/ppe1.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
+                    </div>
+                </article>
+
+                <article class="ppe-card">
+                    <div class="ppe-number">PPE 2</div>
+                    <h3>🖥️ Active Directory & GPO</h3>
+                    <p>Déploiement d'un environnement Active Directory complet avec gestion des utilisateurs, des groupes, stratégies de groupe (GPO) et scripts de déploiement automatisé.</p>
+                    <div class="ppe-tags">
+                        <span class="tag">Windows Server</span>
+                        <span class="tag">AD</span>
+                        <span class="tag">GPO</span>
+                        <span class="tag">PowerShell</span>
+                    </div>
+                    <div class="btn-row">
+                        <a href="fichiers/ppe2.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
+                    </div>
+                </article>
+
+                <article class="ppe-card">
+                    <div class="ppe-number">PPE 3</div>
+                    <h3>💻 Application de ticketing</h3>
+                    <p>Développement d'une application web de gestion de tickets incidents avec interface responsive, système d'authentification et tableau de bord statistiques en temps réel.</p>
+                    <div class="ppe-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag">Symfony</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Bootstrap</span>
+                    </div>
+                    <div class="btn-row">
+                        <a href="fichiers/ppe3.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
+                    </div>
+                </article>
+
+                <article class="ppe-card">
+                    <div class="ppe-number">PPE 4</div>
+                    <h3>🔍 Audit de sécurité réseau</h3>
+                    <p>Réalisation d'un audit complet de sécurité réseau avec tests d'intrusion, analyse de vulnérabilités et rédaction d'un plan d'action avec recommandations détaillées.</p>
+                    <div class="ppe-tags">
+                        <span class="tag">Nmap</span>
+                        <span class="tag">Wireshark</span>
+                        <span class="tag">Metasploit</span>
+                        <span class="tag">OWASP</span>
+                    </div>
+                    <div class="btn-row">
+                        <a href="fichiers/ppe4.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
+                    </div>
+                </article>
+
+                <article class="ppe-card">
+                    <div class="ppe-number">PPE 5</div>
+                    <h3>☁️ Infrastructure cloud Docker</h3>
+                    <p>Conteneurisation d'applications et mise en place d'une infrastructure cloud avec Docker Compose, orchestration et CI/CD pour déploiements automatisés.</p>
+                    <div class="ppe-tags">
+                        <span class="tag">Docker</span>
+                        <span class="tag">Docker Compose</span>
+                        <span class="tag">Linux</span>
+                        <span class="tag">Nginx</span>
+                    </div>
+                    <div class="btn-row">
+                        <a href="fichiers/ppe5.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
+                    </div>
+                </article>
+
+                <article class="ppe-card">
+                    <div class="ppe-number">PPE 6</div>
+                    <h3>💾 Solution de sauvegarde & PRA</h3>
+                    <p>Conception et implémentation d'une solution de sauvegarde automatisée avec Plan de Reprise d'Activité (PRA) incluant tests de restauration et documentation complète.</p>
+                    <div class="ppe-tags">
+                        <span class="tag">Veeam</span>
+                        <span class="tag">Scripts Bash</span>
+                        <span class="tag">NAS</span>
+                        <span class="tag">Hyper-V</span>
+                    </div>
+                    <div class="btn-row">
+                        <a href="fichiers/ppe6.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-e6" class="page-overlay" role="dialog" aria-modal="true" aria-label="Épreuve E6">
+        <div class="page-inner">
+            <button class="page-back" onclick="closePage('page-e6')" aria-label="Retour au portfolio">
+                ← Retour au portfolio
+            </button>
+
+            <div class="section-header" style="text-align:left;padding-bottom:0">
+                <div class="section-label">BTS SIO SISR – Épreuve professionnelle</div>
+                <h2 style="margin-bottom:8px">Épreuve E6</h2>
+                <p style="color:#94a3b8;max-width:720px;font-size:0.95rem;margin-bottom:0">
+                    Tableau de synthèse des compétences professionnelles couvertes au cours de ma formation, en lien avec le référentiel officiel du BTS SIO option SISR.
+                </p>
+            </div>
+
+            <div class="ppe-intro">
+                L'épreuve E6 évalue la maîtrise des compétences du bloc <strong>« Support et mise à disposition de services informatiques »</strong>. Le tableau ci-dessous recense les situations professionnelles significatives (SPS) associées à mes projets et les compétences validées.
+            </div>
+
+            <div class="e6-bloc">
+                <h3>📁 Dossiers professionnels (PPE E6)</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+                    Téléchargez ci-dessous la documentation technique et les rapports de tests de mes deux projets présentés pour l'épreuve E6.
+                </p>
+                <div class="ppe-grid" style="margin-bottom: 40px;">
+                    
+                    <article class="ppe-card">
+                        <div class="ppe-number">SPS 1</div>
+                        <h3>[Nom de ton premier projet E6]</h3>
+                        <p>Description courte de la mise en situation professionnelle (ex: Déploiement d'une infrastructure...).</p>
+                        <div class="btn-row">
+                            <a href="fichiers_e6/e6_projet1_technique.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small" style="margin-bottom: 4px;">📄 Document Technique</a>
+                            <a href="fichiers_e6/e6_projet1_tests.pdf" target="_blank" rel="noopener noreferrer" class="btn-small">📄 Rapport de Tests</a>
+                        </div>
+                    </article>
+
+                    <article class="ppe-card">
+                        <div class="ppe-number">SPS 2</div>
+                        <h3>[Nom de ton second projet E6]</h3>
+                        <p>Description courte de la seconde mise en situation professionnelle présentée au jury.</p>
+                        <div class="btn-row">
+                            <a href="fichiers_e6/e6_projet2_technique.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small" style="margin-bottom: 4px;">📄 Document Technique</a>
+                            <a href="fichiers_e6/e6_projet2_tests.pdf" target="_blank" rel="noopener noreferrer" class="btn-small">📄 Rapport de Tests</a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <div class="e6-stats">
+                <div class="e6-stat">
+                    <span class="stat-num">13</span>
+                    <span class="stat-label">Compétences</span>
+                </div>
+                <div class="e6-stat">
+                    <span class="stat-num">11</span>
+                    <span class="stat-label">Validées</span>
+                </div>
+                <div class="e6-stat">
+                    <span class="stat-num">2</span>
+                    <span class="stat-label">En cours</span>
+                </div>
+                <div class="e6-stat">
+                    <span class="stat-num">6</span>
+                    <span class="stat-label">PPE couverts</span>
+                </div>
+            </div>
+
+            <div class="e6-bloc">
+                <h3>📂 Bloc 1 – Gérer le patrimoine informatique</h3>
+                <table class="e6-table" aria-label="Bloc 1 – Compétences">
+                    <thead>
+                        <tr>
+                            <th scope="col">Compétence</th>
+                            <th scope="col">Projet associé</th>
+                            <th scope="col">Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Compétence">Recenser et identifier les ressources numériques</td>
+                            <td data-label="Projet">PPE 2 – Active Directory & GPO</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Exploiter des référentiels, normes et standards</td>
+                            <td data-label="Projet">PPE 4 – Audit sécurité (OWASP, ISO 27001)</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Mettre en place et vérifier les niveaux d'habilitation</td>
+                            <td data-label="Projet">PPE 2 – GPO & IAM</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Vérifier les conditions de la continuité d'un service</td>
+                            <td data-label="Projet">PPE 6 – PRA / Sauvegarde</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="e6-bloc">
+                <h3>🌐 Bloc 2 – Répondre aux incidents et demandes d'assistance</h3>
+                <table class="e6-table" aria-label="Bloc 2 – Compétences">
+                    <thead>
+                        <tr>
+                            <th scope="col">Compétence</th>
+                            <th scope="col">Projet associé</th>
+                            <th scope="col">Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Compétence">Collecter, suivre et orienter les demandes</td>
+                            <td data-label="Projet">PPE 3 – Application de ticketing</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Traiter des demandes concernant les services réseau</td>
+                            <td data-label="Projet">PPE 1 – Infrastructure réseau sécurisée</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Traiter des demandes concernant les applications</td>
+                            <td data-label="Projet">PPE 3 – Ticketing / PPE 5 – Docker</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="e6-bloc">
+                <h3>🔒 Bloc 3 – Développer la présence en ligne de l'organisation</h3>
+                <table class="e6-table" aria-label="Bloc 3 – Compétences">
+                    <thead>
+                        <tr>
+                            <th scope="col">Compétence</th>
+                            <th scope="col">Projet associé</th>
+                            <th scope="col">Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Compétence">Participer à la valorisation de l'image de l'organisation</td>
+                            <td data-label="Projet">PPE 3 – Application web ticketing</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Référencer les services en ligne</td>
+                            <td data-label="Projet">PPE 5 – Docker / Nginx</td>
+                            <td data-label="Statut"><span class="badge-wip">⏳ En cours</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Assurer la sécurité d'un service web</td>
+                            <td data-label="Projet">PPE 1 – pfSense / PPE 4 – Audit</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="e6-bloc">
+                <h3>🛠️ Bloc 4 – Travailler en mode projet</h3>
+                <table class="e6-table" aria-label="Bloc 4 – Compétences">
+                    <thead>
+                        <tr>
+                            <th scope="col">Compétence</th>
+                            <th scope="col">Projet associé</th>
+                            <th scope="col">Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Compétence">Analyser les objectifs et modalités d'organisation d'un projet</td>
+                            <td data-label="Projet">Ensemble des PPE</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Planifier les activités</td>
+                            <td data-label="Projet">PPE 4 – Audit (planning Gantt)</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Évaluer les indicateurs de suivi d'un projet</td>
+                            <td data-label="Projet">PPE 6 – PRA</td>
+                            <td data-label="Statut"><span class="badge-wip">⏳ En cours</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="e6-bloc">
+                <h3>🔐 Bloc 5 – Mettre à disposition des utilisateurs un service informatique</h3>
+                <table class="e6-table" aria-label="Bloc 5 – Compétences">
+                    <thead>
+                        <tr>
+                            <th scope="col">Compétence</th>
+                            <th scope="col">Projet associé</th>
+                            <th scope="col">Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Compétence">Réaliser les tests d'intégration et d'acceptation</td>
+                            <td data-label="Projet">PPE 5 – Docker / PPE 6 – Sauvegarde</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Déployer un service</td>
+                            <td data-label="Projet">PPE 1, 2, 5</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Accompagner les utilisateurs dans la mise en place d'un service</td>
+                            <td data-label="Projet">PPE 2 – AD / PPE 3 – Ticketing</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <header id="accueil">
+        <div class="hero-content">
+            <div class="hero-badge">🎓 BTS SIO - SERVICES INFORMATIQUES</div>
+            <h1>Nolan Ruby</h1>
+            <p class="subtitle typing-cursor" id="typing-subtitle">Étudiant en BTS SIO-SISR</p>
+            <p>Passionné par l'innovation technologique, je conçois et sécurise des solutions informatiques performantes tout en maîtrisant les enjeux de la cybersécurité moderne.</p>
+            <div class="cta-buttons">
+                <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+                <a href="fichiers/cv_nolan.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">📄 Télécharger mon CV</a>
+                <a href="#contact" class="btn btn-secondary">Me contacter</a>
+            </div>
+        </div>
+    </header>
+
+<section id="apropos">
+    <div class="section-header">
+        <div class="section-label">Découvrir mon parcours</div>
+        <h2>À propos</h2>
+    </div>
+    <div class="about-grid">
+        <div class="about-text animate-on-scroll">
+            <p><strong>Mon approche de l'informatique ?</strong> Ne jamais configurer deux fois la même chose à la main.</p>
+            
+            <p>Actuellement en <strong>BTS SIO SISR</strong>, je maîtrise les fondamentaux de l’administration systèmes et réseaux, de la gestion de parcs <strong>Windows 11</strong> à la conception d’architectures sur <strong>Packet Tracer</strong>.</p>
+            
+            <p>Au-delà de l'exploitation classique, je m'appuie sur le scripting pour transformer les tâches répétitives en processus fiables. Mon objectif en Bachelor est d'intégrer une <strong>culture DevOps</strong> au cœur de l'infrastructure pour garantir des déploiements fluides, sécurisés et évolutifs.</p>
+            
+            <p>Mon profil combine la <strong>rigueur opérationnelle</strong> de l'administrateur et l'agilité de l'automatisation pour répondre aux défis du Cloud et de l'Infrastructure as Code.</p>
+        </div>
+
+        <div class="skills-visual animate-on-scroll">
+            <div class="skill-box">
+                <div class="skill-icon">⚙️</div>
+                <h3>Admin & Automatisation</h3>
+                <p>Gestion système (W11/Server) et scripting pour l'efficacité opérationnelle.</p>
+            </div>
+            <div class="skill-box">
+                <div class="skill-icon">🌐</div>
+                <h3>Réseaux & Infrastructures</h3>
+                <p>Conception et simulation d'architectures réseau via Cisco Packet Tracer.</p>
+            </div>
+            <div class="skill-box">
+                <div class="skill-icon">🚀</div>
+                <h3>Vision DevOps</h3>
+                <p>Transition vers l'Infrastructure as Code (IaC) et l'automatisation des flux.</p>
+            </div>
+            <div class="skill-box">
+                <div class="skill-icon">🛡️</div>
+                <h3>Sécurité & Rigueur</h3>
+                <p>Application des bonnes pratiques de sécurisation sur l'ensemble de la stack.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="projets">
+        <div class="section-header">
+            <div class="section-label">Mes réalisations</div>
+            <h2>Projets PPE</h2>
+            <p class="section-description">Découvrez mes Pratiques Professionnelles Encadrées réalisées durant ma formation BTS SIO-SISR</p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card animate-on-scroll">
+                <div class="project-image" aria-hidden="true">🛡️</div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Infrastructure réseau sécurisée</h3>
+                        <p class="project-description">Conception et déploiement d'une infrastructure réseau complète avec segmentation VLAN, pare-feu pfSense, et mise en place d'un VPN IPsec pour l'accès distant sécurisé.</p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">pfSense</span><span class="tag">VPN</span>
+                        <span class="tag">VLAN</span><span class="tag">IPsec</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="fichiers/ppe1.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card animate-on-scroll">
+                <div class="project-image" aria-hidden="true">🖥️</div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Active Directory & GPO</h3>
+                        <p class="project-description">Déploiement d'un environnement Active Directory complet avec gestion des utilisateurs, des groupes, stratégies de groupe (GPO) et scripts de déploiement automatisé.</p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Windows Server</span><span class="tag">AD</span>
+                        <span class="tag">GPO</span><span class="tag">PowerShell</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="fichiers/ppe2.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card animate-on-scroll">
+                <div class="project-image" aria-hidden="true">💻</div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Application de ticketing</h3>
+                        <p class="project-description">Développement d'une application web de gestion de tickets incidents avec interface responsive, système d'authentification et tableau de bord statistiques en temps réel.</p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span><span class="tag">Symfony</span>
+                        <span class="tag">MySQL</span><span class="tag">Bootstrap</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="fichiers/ppe3.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card animate-on-scroll">
+                <div class="project-image" aria-hidden="true">🔍</div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Audit de sécurité réseau</h3>
+                        <p class="project-description">Réalisation d'un audit complet de sécurité réseau avec tests d'intrusion, analyse de vulnérabilités et rédaction d'un plan d'action avec recommandations détaillées.</p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Nmap</span><span class="tag">Wireshark</span>
+                        <span class="tag">Metasploit</span><span class="tag">OWASP</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="fichiers/ppe4.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card animate-on-scroll">
+                <div class="project-image" aria-hidden="true">☁️</div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Infrastructure cloud Docker</h3>
+                        <p class="project-description">Conteneurisation d'applications et mise en place d'une infrastructure cloud avec Docker Compose, orchestration et CI/CD pour déploiements automatisés.</p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Docker</span><span class="tag">Docker Compose</span>
+                        <span class="tag">Linux</span><span class="tag">Nginx</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="fichiers/ppe5.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card animate-on-scroll">
+                <div class="project-image" aria-hidden="true">💾</div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Solution de sauvegarde & PRA</h3>
+                        <p class="project-description">Conception et implémentation d'une solution de sauvegarde automatisée avec Plan de Reprise d'Activité (PRA) incluant tests de restauration et documentation complète.</p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Veeam</span><span class="tag">Scripts Bash</span>
+                        <span class="tag">NAS</span><span class="tag">Hyper-V</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="fichiers/ppe6.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="competences">
+        <div class="section-header">
+            <div class="section-label">Mon expertise technique</div>
+            <h2>Compétences</h2>
+        </div>
+        <div class="competences-grid animate-on-scroll">
+            <div class="competence-card">
+                <div class="competence-header">
+                    <div class="competence-icon" aria-hidden="true">⚡</div>
+                    <h3>Stockage & Cloud</h3>
+                </div>
+                <ul>
+                    <li>NAS / SAN (Synology, TrueNAS, Freebox)</li>
+                    <li>Windows Backup</li>
+                    <li>Azure</li>
+                    <li>Scripts Bash / PowerShell optimisés par IA</li>
+                    <li>C# / .NET</li>
+                    <li>Java</li>
+                </ul>
+            </div>
+            <div class="competence-card">
+                <div class="competence-header">
+                    <div class="competence-icon" aria-hidden="true">🌐</div>
+                    <h3>Systèmes & Réseaux</h3>
+                </div>
+                <ul>
+                    <li>Windows Server 2019 / 2022</li>
+                    <li>Linux (Debian, Ubuntu)</li>
+                    <li>Active Directory / GPO</li>
+                    <li>TCP/IP, DNS, DHCP, VPN</li>
+                    <li>VMware & Hyper-V</li>
+                    <li>Docker</li>
+                </ul>
+            </div>
+            <div class="competence-card">
+                <div class="competence-header">
+                    <div class="competence-icon" aria-hidden="true">🛡️</div>
+                    <h3>Cybersécurité</h3>
+                </div>
+                <ul>
+                    <li>Pare-feu (pfSense)</li>
+                    <li>Analyse de vulnérabilités (Wireshark, Nmap)</li>
+                    <li>Gestion des accès (IAM)</li>
+                    <li>RGPD & Conformité</li>
+                    <li>Sauvegardes & PRA</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-header">
+            <div class="section-label">Restons en contact</div>
+            <h2>Contact</h2>
+        </div>
+        <div class="contact-container animate-on-scroll">
+            <h3>Travaillons ensemble</h3>
+            <p>Je suis actuellement ouvert aux opportunités professionnelles : stages, alternances ou missions freelance. N'hésitez pas à me contacter pour échanger sur vos projets !</p>
+            
+            <form action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST" class="custom-form">
+                <input type="text" name="nom" placeholder="Votre nom" required>
+                <input type="email" name="email" placeholder="Votre adresse email" required>
+                <textarea name="message" placeholder="Votre message..." rows="5" required></textarea>
+                <button type="submit" class="btn btn-primary">Envoyer le message</button>
+            </form>
+
+            <div class="contact-links" style="margin-top: 2rem;">
+                <a href="mailto:nolan.rub1@outlook.fr" class="contact-link" aria-label="Envoyer un email">
+                    <span class="contact-icon" aria-hidden="true">📧</span>
+                    <span>Email</span>
+                </a>
+                <a href="https://www.linkedin.com/in/nolan-ruby" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn">
+                    <span class="contact-icon" aria-hidden="true">💼</span>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/votre-profil" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub">
+                    <span class="contact-icon" aria-hidden="true">💻</span>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Nolan Ruby – Portfolio BTS SIO SISR</p>
+    </footer>
+
+    <button id="back-to-top" aria-label="Retour en haut de page" title="Retour en haut">↑</button>
+
+    <script>
+        /* ─── Page overlay open / close ─── */
+        function openPage(id) {
+            // Fermer toutes les autres pages ouvertes avant d'ouvrir la nouvelle
+            document.querySelectorAll('.page-overlay.active').forEach(p => {
+                p.classList.remove('active');
+            });
+            
+            const overlay = document.getElementById(id);
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // 🌟 CORRECTION DE LA BANNIÈRE : Utilisation d'IDs stricts pour éviter les bugs
+            document.querySelectorAll('nav ul > li > a').forEach(a => a.classList.remove('active'));
+            if (id === 'page-veille') {
+                document.getElementById('nav-veille')?.classList.add('active');
+            } else if (id === 'page-ppe' || id === 'page-e6') {
+                document.getElementById('nav-projets')?.classList.add('active');
+            }
+
+            overlay.querySelector('.page-back')?.focus();
+        }
+        
+        function closePage(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = '';
+            window.dispatchEvent(new Event('scroll'));
+        }
+
+        // Fermer avec Escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                const overlays = document.querySelectorAll('.page-overlay.active');
+                if (overlays.length > 0) {
+                    overlays.forEach(p => p.classList.remove('active'));
+                    document.body.style.overflow = '';
+                    window.dispatchEvent(new Event('scroll'));
+                }
+            }
+        });
+
+        /* ─── Smooth scroll pour les ancres ─── */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            if (anchor.hasAttribute('onclick')) return;
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Fermer les overlays ouverts
+                document.querySelectorAll('.page-overlay.active').forEach(p => {
+                    p.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+                
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    setTimeout(() => {
+                        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                    }, 50);
+                }
+            });
+        });
+
+        /* ─── Navigation : scroll & active link ─── */
+        const nav = document.getElementById('main-nav');
+        const navLinks = document.querySelectorAll('nav ul > li > a[href^="#"]');
+        const sections = document.querySelectorAll('header[id], section[id]');
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+
+            nav.classList.toggle('scrolled', y > 30);
+
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            document.getElementById('scroll-progress').style.width =
+                docHeight > 0 ? (y / docHeight * 100) + '%' : '0%';
+
+            document.getElementById('back-to-top').classList.toggle('visible', y > 400);
+
+            if (!document.querySelector('.page-overlay.active')) {
+                let current = '';
+                sections.forEach(s => {
+                    if (y >= s.offsetTop - 120) current = s.id;
+                });
+                navLinks.forEach(a => {
+                    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+                });
+                
+                // Retirer la surbrillance de Veille quand on scroll la page principale
+                const veilleLink = document.getElementById('nav-veille');
+                if(veilleLink) veilleLink.classList.remove('active');
+            }
+        }, { passive: true });
+
+        /* ─── Back to top ─── */
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* ─── Hamburger menu mobile ─── */
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu   = document.getElementById('nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('open');
+            navToggle.classList.toggle('open', isOpen);
+            navToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        /* ─── Intersection Observer (scroll animations) ─── */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('.project-card').forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.08}s`;
+        });
+
+        /* ─── Typing effect (hero subtitle) ─── */
+        const phrases = [
+            'Étudiant en BTS SIO-SISR',
+            'Apprenti Technicien Systèmes & Réseaux',
+            'Futur Administrateur DevOps',
+        ];
+        let phraseIdx = 0, charIdx = 0, deleting = false;
+        const typingEl = document.getElementById('typing-subtitle');
+
+        function typeLoop() {
+            const phrase = phrases[phraseIdx];
+            if (!deleting) {
+                typingEl.textContent = phrase.slice(0, ++charIdx);
+                if (charIdx === phrase.length) {
+                    deleting = true;
+                    setTimeout(typeLoop, 2200);
+                    return;
+                }
+            } else {
+                typingEl.textContent = phrase.slice(0, --charIdx);
+                if (charIdx === 0) {
+                    deleting = false;
+                    phraseIdx = (phraseIdx + 1) % phrases.length;
+                }
+            }
+            setTimeout(typeLoop, deleting ? 45 : 80);
+        }
+        
+        setTimeout(typeLoop, 1000);
+
+        /* ─── Chargement dynamique de la Veille IT-Connect (AVEC SÉCURITÉ) ─── */
+        async function chargerVeilleITConnect() {
+            const rssUrl = 'https://www.it-connect.fr/feed/';
+            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+            const grilleVeille = document.querySelector('#page-veille .veille-grid');
+
+            // 🌟 NOUVEAU : Message d'attente pro
+            grilleVeille.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); font-family: monospace;">⏳ Connexion au serveur d\'actualités IT-Connect en cours...</p>';
+
+            try {
+                const reponse = await fetch(apiUrl);
+                const donnees = await reponse.json();
+
+                if (donnees.status === 'ok') {
+                    grilleVeille.innerHTML = ''; // On efface le texte d'attente
+                    
+                    const derniersArticles = donnees.items.slice(0, 9);
+                    
+                    derniersArticles.reverse().forEach(article => {
+                        const nouvelleCarte = document.createElement('article');
+                        nouvelleCarte.className = 'veille-card';
+                        
+                        let descriptionTexte = article.description.replace(/(<([^>]+)>)/gi, "").substring(0, 130) + '...';
+
+                        nouvelleCarte.innerHTML = `
+                            <div class="veille-icon" aria-hidden="true">🖥️</div>
+                            <span class="tag-category">IT-Connect</span>
+                            <h3><a href="${article.link}" target="_blank" rel="noopener noreferrer" style="color: var(--text-primary); text-decoration: none; border-bottom: 1px dashed var(--indigo); padding-bottom: 2px;">${article.title}</a></h3>
+                            <p>${descriptionTexte}</p>
+                            <div class="veille-meta">
+                                <span class="veille-source">📡 Flux Automatique</span>
+                                <span class="veille-source" style="background: rgba(99,102,241,0.1); color: var(--indigo-light); border-color: rgba(99,102,241,0.25);">📅 ${new Date(article.pubDate).toLocaleDateString('fr-FR')}</span>
+                            </div>
+                        `;
+                        grilleVeille.prepend(nouvelleCarte);
+                    });
+                } else {
+                    throw new Error("Erreur avec l'API rss2json.");
+                }
+            } catch (erreur) {
+                console.error('Impossible de charger la veille :', erreur);
+                // 🌟 NOUVEAU : Affichage d'une boîte d'erreur élégante si la connexion échoue
+                grilleVeille.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 2rem; background: var(--surface-2); border: 1px dashed rgba(245,158,11,0.4); border-radius: var(--radius-lg);">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚠️</div>
+                        <h3 style="color: var(--amber-light); margin-bottom: 0.5rem; font-size: 1.1rem;">Impossible de charger les actualités</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 500px; margin: 0 auto;">Le serveur d'actualités rencontre un problème de communication temporaire. Veuillez réessayer ultérieurement.</p>
+                    </div>
+                `;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', chargerVeilleITConnect);
+
+    </script>
+</body>
+</html>
