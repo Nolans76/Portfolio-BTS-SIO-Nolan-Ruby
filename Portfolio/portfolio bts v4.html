@@ -323,7 +323,7 @@
         .ppe-card .btn-primary-small:hover { opacity: 0.85; background: linear-gradient(135deg, var(--indigo), #8b5cf6); }
 
         /* ═══════════════════════════════════════
-           E6 TABLES
+           E6 TABLES (utilisés pour E5 et E6)
         ═══════════════════════════════════════ */
         .e6-bloc { margin-bottom: 44px; }
         .e6-bloc h3 {
@@ -643,6 +643,11 @@
                             📋 E6
                         </a>
                     </li>
+                    <li role="none">
+                        <a href="#" role="menuitem" onclick="openPage('page-e5'); return false;">
+                            📊 Synthèse E5
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li role="none"><a href="#competences" role="menuitem">Compétences</a></li>
@@ -696,61 +701,61 @@
 
                 <article class="ppe-card">
                     <div class="ppe-number">PPE 1</div>
-                    <h3>🛡️ Infrastructure réseau sécurisée</h3>
-                    <p>Conception et déploiement d'une infrastructure réseau complète avec segmentation VLAN, pare-feu pfSense, et VPN IPsec pour l'accès distant sécurisé.</p>
+                    <h3>🖥️ Active Directory Segmentée</h3>
+                    <p>Déploiement d'une architecture sous Windows Server 2025 protégée par pfSense, avec gestion des droits via le modèle AGDLP et sécurisation par GPO.</p>
                     <div class="ppe-tags">
+                        <span class="tag">Windows Server</span>
+                        <span class="tag">AD / GPO</span>
+                        <span class="tag">AGDLP</span>
                         <span class="tag">pfSense</span>
-                        <span class="tag">VPN</span>
-                        <span class="tag">VLAN</span>
-                        <span class="tag">IPsec</span>
                     </div>
                     <div class="btn-row">
-                        <a href="fichiers/ppe1.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
+                        <a href="fichiers_ppe/ppe_agdlp.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
                     </div>
                 </article>
 
                 <article class="ppe-card">
                     <div class="ppe-number">PPE 2</div>
-                    <h3>🖥️ Active Directory & GPO</h3>
-                    <p>Déploiement d'un environnement Active Directory complet avec gestion des utilisateurs, des groupes, stratégies de groupe (GPO) et scripts de déploiement automatisé.</p>
+                    <h3>🌐 Infrastructure Réseau LAN Cisco</h3>
+                    <p>Conception d'une architecture hiérarchisée sous Packet Tracer intégrant des VLANs, le routage inter-VLAN, le protocole Spanning Tree (STP) et la sécurité des ports.</p>
                     <div class="ppe-tags">
-                        <span class="tag">Windows Server</span>
-                        <span class="tag">AD</span>
-                        <span class="tag">GPO</span>
-                        <span class="tag">PowerShell</span>
+                        <span class="tag">Cisco</span>
+                        <span class="tag">VLAN / STP</span>
+                        <span class="tag">Port Security</span>
+                        <span class="tag">Packet Tracer</span>
                     </div>
                     <div class="btn-row">
-                        <a href="fichiers/ppe2.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
+                        <a href="fichiers_ppe/ppe_cisco.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
                     </div>
                 </article>
 
                 <article class="ppe-card">
                     <div class="ppe-number">PPE 3</div>
-                    <h3>💻 Application de ticketing</h3>
-                    <p>Développement d'une application web de gestion de tickets incidents avec interface responsive, système d'authentification et tableau de bord statistiques en temps réel.</p>
+                    <h3>☁️ Cloud Privé Collaboratif</h3>
+                    <p>Mise en place de Nextcloud hébergé sur Ubuntu via Docker et Nginx Proxy Manager, avec sécurisation renforcée (pare-feu UFW, HTTPS et authentification 2FA).</p>
                     <div class="ppe-tags">
-                        <span class="tag">PHP</span>
-                        <span class="tag">Symfony</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">Bootstrap</span>
+                        <span class="tag">Nextcloud</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Nginx</span>
+                        <span class="tag">Sécurité 2FA</span>
                     </div>
                     <div class="btn-row">
-                        <a href="fichiers/ppe3.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
+                        <a href="fichiers_ppe/ppe_cloud_privé.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
                     </div>
                 </article>
 
                 <article class="ppe-card">
                     <div class="ppe-number">PPE 4</div>
-                    <h3>🔍 Audit de sécurité réseau</h3>
-                    <p>Réalisation d'un audit complet de sécurité réseau avec tests d'intrusion, analyse de vulnérabilités et rédaction d'un plan d'action avec recommandations détaillées.</p>
+                    <h3>📦 Validation Full-Stack (Virtualisation)</h3>
+                    <p>Création d'un laboratoire de test Windows Server 2025 par virtualisation imbriquée (VMware et Hyper-V) et automatisation PowerShell des identités Active Directory.</p>
                     <div class="ppe-tags">
-                        <span class="tag">Nmap</span>
-                        <span class="tag">Wireshark</span>
-                        <span class="tag">Metasploit</span>
-                        <span class="tag">OWASP</span>
+                        <span class="tag">VMware</span>
+                        <span class="tag">Hyper-V</span>
+                        <span class="tag">Windows Server</span>
+                        <span class="tag">PowerShell</span>
                     </div>
                     <div class="btn-row">
-                        <a href="fichiers/ppe4.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
+                        <a href="fichiers_ppe/ppe_virtualisation.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Télécharger PDF</a>
                     </div>
                 </article>
 
@@ -798,61 +803,68 @@
                 <div class="section-label">BTS SIO SISR – Épreuve professionnelle</div>
                 <h2 style="margin-bottom:8px">Épreuve E6</h2>
                 <p style="color:#94a3b8;max-width:720px;font-size:0.95rem;margin-bottom:0">
-                    Tableau de synthèse des compétences professionnelles couvertes au cours de ma formation, en lien avec le référentiel officiel du BTS SIO option SISR.
+                    Présentation de mes situations professionnelles significatives (SPS) présentées lors de l'examen final.
                 </p>
             </div>
 
             <div class="ppe-intro">
-                L'épreuve E6 évalue la maîtrise des compétences du bloc <strong>« Support et mise à disposition de services informatiques »</strong>. Le tableau ci-dessous recense les situations professionnelles significatives (SPS) associées à mes projets et les compétences validées.
+                L'épreuve E6 évalue la maîtrise des compétences du bloc <strong>« Support et mise à disposition de services informatiques »</strong>. Téléchargez ci-dessous la documentation technique et les rapports de tests des deux projets présentés au jury.
             </div>
 
             <div class="e6-bloc">
                 <h3>📁 Dossiers professionnels (PPE E6)</h3>
                 <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
-                    Téléchargez ci-dessous la documentation technique et les rapports de tests de mes deux projets présentés pour l'épreuve E6.
+                    Documents techniques, de tests et d'implémentation de mes deux projets phares.
                 </p>
                 <div class="ppe-grid" style="margin-bottom: 40px;">
                     
                     <article class="ppe-card">
                         <div class="ppe-number">SPS 1</div>
-                        <h3>[Nom de ton premier projet E6]</h3>
-                        <p>Description courte de la mise en situation professionnelle (ex: Déploiement d'une infrastructure...).</p>
-                        <div class="btn-row">
-                            <a href="fichiers_e6/e6_projet1_technique.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small" style="margin-bottom: 4px;">📄 Document Technique</a>
+                        <h3>🖥️ Active Directory Segmentée</h3>
+                        <p>Déploiement d'une architecture sous Windows Server 2025 protégée par pfSense, avec gestion des droits via le modèle AGDLP et sécurisation par GPO.</p>
+                        <div class="btn-row" style="flex-direction: column; gap: 8px;">
+                            <a href="fichiers_e6/e6_projet1_technique.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Document Technique</a>
                             <a href="fichiers_e6/e6_projet1_tests.pdf" target="_blank" rel="noopener noreferrer" class="btn-small">📄 Rapport de Tests</a>
+                            <a href="realisations/e6_projet1_realisation.pdf" target="_blank" rel="noopener noreferrer" class="btn-small" style="border-color: var(--amber-light); color: var(--amber-light);">📄 Réalisation professionnelle</a>
                         </div>
                     </article>
 
                     <article class="ppe-card">
                         <div class="ppe-number">SPS 2</div>
-                        <h3>[Nom de ton second projet E6]</h3>
-                        <p>Description courte de la seconde mise en situation professionnelle présentée au jury.</p>
-                        <div class="btn-row">
-                            <a href="fichiers_e6/e6_projet2_technique.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small" style="margin-bottom: 4px;">📄 Document Technique</a>
+                        <h3>🌐 Infrastructure Réseau LAN Cisco</h3>
+                        <p>Conception d'une architecture hiérarchisée sous Packet Tracer intégrant des VLANs, le routage inter-VLAN, le protocole Spanning Tree (STP) et la sécurité des ports.</p>
+                        <div class="btn-row" style="flex-direction: column; gap: 8px;">
+                            <a href="fichiers_e6/e6_projet2_technique.pdf" target="_blank" rel="noopener noreferrer" class="btn-small btn-primary-small">📄 Document Technique</a>
                             <a href="fichiers_e6/e6_projet2_tests.pdf" target="_blank" rel="noopener noreferrer" class="btn-small">📄 Rapport de Tests</a>
+                            <a href="realisations/e6_projet2_realisation.pdf" target="_blank" rel="noopener noreferrer" class="btn-small" style="border-color: var(--amber-light); color: var(--amber-light);">📄 Réalisation professionnelle</a>
                         </div>
                     </article>
 
                 </div>
             </div>
 
-            <div class="e6-stats">
-                <div class="e6-stat">
-                    <span class="stat-num">13</span>
-                    <span class="stat-label">Compétences</span>
-                </div>
-                <div class="e6-stat">
-                    <span class="stat-num">11</span>
-                    <span class="stat-label">Validées</span>
-                </div>
-                <div class="e6-stat">
-                    <span class="stat-num">2</span>
-                    <span class="stat-label">En cours</span>
-                </div>
-                <div class="e6-stat">
-                    <span class="stat-num">6</span>
-                    <span class="stat-label">PPE couverts</span>
-                </div>
+        </div>
+    </div>
+
+    <div id="page-e5" class="page-overlay" role="dialog" aria-modal="true" aria-label="Synthèse E5">
+        <div class="page-inner">
+            <button class="page-back" onclick="closePage('page-e5')" aria-label="Retour au portfolio">
+                ← Retour au portfolio
+            </button>
+
+            <div class="section-header" style="text-align:left;padding-bottom:0">
+                <div class="section-label">BTS SIO SISR – Épreuve professionnelle</div>
+                <h2 style="margin-bottom:8px">Synthèse E5</h2>
+                <p style="color:#94a3b8;max-width:720px;font-size:0.95rem;margin-bottom:0">
+                    Tableau de synthèse des réalisations professionnelles et des compétences mises en œuvre durant ma formation.
+                </p>
+            </div>
+
+            <div class="ppe-intro">
+                <a href="synthese/synthese_e5.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.5rem;">
+                    📄 Télécharger ma Synthèse E5 (PDF)
+                </a>
+                <p>Ce tableau recense les compétences validées au travers de mes différents projets (PPE) et situations professionnelles en entreprise, conformément au référentiel du BTS SIO SISR.</p>
             </div>
 
             <div class="e6-bloc">
@@ -861,29 +873,39 @@
                     <thead>
                         <tr>
                             <th scope="col">Compétence</th>
-                            <th scope="col">Projet associé</th>
+                            <th scope="col">Projet(s) ou Réalisation(s) associé(s)</th>
                             <th scope="col">Statut</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td data-label="Compétence">Recenser et identifier les ressources numériques</td>
-                            <td data-label="Projet">PPE 2 – Active Directory & GPO</td>
+                            <td data-label="Projet">Réseau Cisco (Packet Tracer) / Gestion tickets (Freshservice)</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                         <tr>
                             <td data-label="Compétence">Exploiter des référentiels, normes et standards</td>
-                            <td data-label="Projet">PPE 4 – Audit sécurité (OWASP, ISO 27001)</td>
+                            <td data-label="Projet">AD & GPO / Pare-feu pfSense / Serveur de fichiers</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                         <tr>
                             <td data-label="Compétence">Mettre en place et vérifier les niveaux d'habilitation</td>
-                            <td data-label="Projet">PPE 2 – GPO & IAM</td>
+                            <td data-label="Projet">AD & GPO (AGDLP) / Gestion des comptes (Qualnet)</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                         <tr>
                             <td data-label="Compétence">Vérifier les conditions de la continuité d'un service</td>
-                            <td data-label="Projet">PPE 6 – PRA / Sauvegarde</td>
+                            <td data-label="Projet">Pare-feu pfSense / Virtualisation Hyper-V</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Gérer des sauvegardes</td>
+                            <td data-label="Projet">Cloud Privé (Script Bash) / Environnement virtualisé</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Vérifier le respect des règles d'utilisation</td>
+                            <td data-label="Projet">Pare-feu pfSense / GPO</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                     </tbody>
@@ -896,24 +918,24 @@
                     <thead>
                         <tr>
                             <th scope="col">Compétence</th>
-                            <th scope="col">Projet associé</th>
+                            <th scope="col">Projet(s) ou Réalisation(s) associé(s)</th>
                             <th scope="col">Statut</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-label="Compétence">Collecter, suivre et orienter les demandes</td>
-                            <td data-label="Projet">PPE 3 – Application de ticketing</td>
+                            <td data-label="Compétence">Collecter, suivre et orienter des demandes</td>
+                            <td data-label="Projet">Gestion des tickets d'assistance (Freshservice)</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                         <tr>
-                            <td data-label="Compétence">Traiter des demandes concernant les services réseau</td>
-                            <td data-label="Projet">PPE 1 – Infrastructure réseau sécurisée</td>
+                            <td data-label="Compétence">Traiter des demandes concernant les services réseau et système</td>
+                            <td data-label="Projet">Déploiement postes / DHCP Packet Tracer / Impression</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                         <tr>
                             <td data-label="Compétence">Traiter des demandes concernant les applications</td>
-                            <td data-label="Projet">PPE 3 – Ticketing / PPE 5 – Docker</td>
+                            <td data-label="Projet">Gestion tickets (Freshservice) / Gestion comptes (Qualnet)</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                     </tbody>
@@ -921,29 +943,29 @@
             </div>
 
             <div class="e6-bloc">
-                <h3>🔒 Bloc 3 – Développer la présence en ligne de l'organisation</h3>
+                <h3>🔒 Bloc 3 – Développer la présence en ligne</h3>
                 <table class="e6-table" aria-label="Bloc 3 – Compétences">
                     <thead>
                         <tr>
                             <th scope="col">Compétence</th>
-                            <th scope="col">Projet associé</th>
+                            <th scope="col">Projet(s) ou Réalisation(s) associé(s)</th>
                             <th scope="col">Statut</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td data-label="Compétence">Participer à la valorisation de l'image de l'organisation</td>
-                            <td data-label="Projet">PPE 3 – Application web ticketing</td>
+                            <td data-label="Projet">Mise en place du Portfolio / Veille technologique</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                         <tr>
-                            <td data-label="Compétence">Référencer les services en ligne</td>
-                            <td data-label="Projet">PPE 5 – Docker / Nginx</td>
-                            <td data-label="Statut"><span class="badge-wip">⏳ En cours</span></td>
+                            <td data-label="Compétence">Référencer les services en ligne et mesurer leur visibilité</td>
+                            <td data-label="Projet">Mise en place du Portfolio</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                         <tr>
-                            <td data-label="Compétence">Assurer la sécurité d'un service web</td>
-                            <td data-label="Projet">PPE 1 – pfSense / PPE 4 – Audit</td>
+                            <td data-label="Compétence">Participer à l'évolution d'un site Web exploitant les données</td>
+                            <td data-label="Projet">Mise en place du Portfolio</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                     </tbody>
@@ -956,54 +978,89 @@
                     <thead>
                         <tr>
                             <th scope="col">Compétence</th>
-                            <th scope="col">Projet associé</th>
+                            <th scope="col">Projet(s) ou Réalisation(s) associé(s)</th>
                             <th scope="col">Statut</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td data-label="Compétence">Analyser les objectifs et modalités d'organisation d'un projet</td>
-                            <td data-label="Projet">Ensemble des PPE</td>
+                            <td data-label="Projet">Déploiement AD 2025 / Virtualisation / Pare-feu</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                         <tr>
                             <td data-label="Compétence">Planifier les activités</td>
-                            <td data-label="Projet">PPE 4 – Audit (planning Gantt)</td>
+                            <td data-label="Projet">Virtualisation Hyper-V / Migration de serveurs ou de postes</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                         <tr>
-                            <td data-label="Compétence">Évaluer les indicateurs de suivi d'un projet</td>
-                            <td data-label="Projet">PPE 6 – PRA</td>
-                            <td data-label="Statut"><span class="badge-wip">⏳ En cours</span></td>
+                            <td data-label="Compétence">Évaluer les indicateurs de suivi et analyser les écarts</td>
+                            <td data-label="Projet">Gestion des tickets (Freshservice)</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="e6-bloc">
-                <h3>🔐 Bloc 5 – Mettre à disposition des utilisateurs un service informatique</h3>
+                <h3>🔐 Bloc 5 – Mettre à disposition un service informatique</h3>
                 <table class="e6-table" aria-label="Bloc 5 – Compétences">
                     <thead>
                         <tr>
                             <th scope="col">Compétence</th>
-                            <th scope="col">Projet associé</th>
+                            <th scope="col">Projet(s) ou Réalisation(s) associé(s)</th>
                             <th scope="col">Statut</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td data-label="Compétence">Réaliser les tests d'intégration et d'acceptation</td>
-                            <td data-label="Projet">PPE 5 – Docker / PPE 6 – Sauvegarde</td>
+                            <td data-label="Projet">Infrastructure AD Segmentée / Réseau multi-site Cisco</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                         <tr>
                             <td data-label="Compétence">Déployer un service</td>
-                            <td data-label="Projet">PPE 1, 2, 5</td>
+                            <td data-label="Projet">Serveur Windows 2025 (AD/DNS) / Déploiement postes</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                         <tr>
-                            <td data-label="Compétence">Accompagner les utilisateurs dans la mise en place d'un service</td>
-                            <td data-label="Projet">PPE 2 – AD / PPE 3 – Ticketing</td>
+                            <td data-label="Compétence">Accompagner les utilisateurs dans la mise en place</td>
+                            <td data-label="Projet">Configuration d'accès aux droits AD / Gestion tickets</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="e6-bloc">
+                <h3>🎓 Bloc 6 – Organiser son développement professionnel</h3>
+                <table class="e6-table" aria-label="Bloc 6 – Compétences">
+                    <thead>
+                        <tr>
+                            <th scope="col">Compétence</th>
+                            <th scope="col">Projet(s) ou Réalisation(s) associé(s)</th>
+                            <th scope="col">Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Compétence">Mettre en place son environnement d'apprentissage</td>
+                            <td data-label="Projet">Déploiement virtualisé (VMWARE/HYPER-V)</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Mettre en œuvre des outils et stratégies de veille</td>
+                            <td data-label="Projet">Veille technologique</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Gérer son identité professionnelle</td>
+                            <td data-label="Projet">Mise en place du portfolio</td>
+                            <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Compétence">Développer son projet professionnel</td>
+                            <td data-label="Projet">Réalisations en milieu professionnel (1ère & 2ème année)</td>
                             <td data-label="Statut"><span class="badge-ok">✔ Validé</span></td>
                         </tr>
                     </tbody>
@@ -1020,8 +1077,8 @@
             <p class="subtitle typing-cursor" id="typing-subtitle">Étudiant en BTS SIO-SISR</p>
             <p>Passionné par l'innovation technologique, je conçois et sécurise des solutions informatiques performantes tout en maîtrisant les enjeux de la cybersécurité moderne.</p>
             <div class="cta-buttons">
-                <a href="#projets" class="btn btn-primary">Voir mes projets</a>
-                <a href="fichiers/cv_nolan.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">📄 Télécharger mon CV</a>
+                <a href="#projets" class="btn btn-primary">Voir mes projects</a>
+                <a href="cv_2026/cv_nolan_ruby.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">📄 Télécharger mon CV</a>
                 <a href="#contact" class="btn btn-secondary">Me contacter</a>
             </div>
         </div>
@@ -1077,69 +1134,69 @@
 
         <div class="projects-grid">
             <div class="project-card animate-on-scroll">
-                <div class="project-image" aria-hidden="true">🛡️</div>
-                <div class="project-content">
-                    <div class="project-header">
-                        <h3 class="project-title">Infrastructure réseau sécurisée</h3>
-                        <p class="project-description">Conception et déploiement d'une infrastructure réseau complète avec segmentation VLAN, pare-feu pfSense, et mise en place d'un VPN IPsec pour l'accès distant sécurisé.</p>
-                    </div>
-                    <div class="project-tags">
-                        <span class="tag">pfSense</span><span class="tag">VPN</span>
-                        <span class="tag">VLAN</span><span class="tag">IPsec</span>
-                    </div>
-                    <div class="project-footer">
-                        <a href="fichiers/ppe1.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card animate-on-scroll">
                 <div class="project-image" aria-hidden="true">🖥️</div>
                 <div class="project-content">
                     <div class="project-header">
-                        <h3 class="project-title">Active Directory & GPO</h3>
-                        <p class="project-description">Déploiement d'un environnement Active Directory complet avec gestion des utilisateurs, des groupes, stratégies de groupe (GPO) et scripts de déploiement automatisé.</p>
+                        <h3 class="project-title">Active Directory Segmentée</h3>
+                        <p class="project-description">Déploiement d'une architecture sous Windows Server 2025 protégée par pfSense, avec gestion des droits via le modèle AGDLP et sécurisation par GPO.</p>
                     </div>
                     <div class="project-tags">
-                        <span class="tag">Windows Server</span><span class="tag">AD</span>
-                        <span class="tag">GPO</span><span class="tag">PowerShell</span>
+                        <span class="tag">Windows Server</span><span class="tag">AD / GPO</span>
+                        <span class="tag">AGDLP</span><span class="tag">pfSense</span>
                     </div>
                     <div class="project-footer">
-                        <a href="fichiers/ppe2.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                        <a href="fichiers_ppe/ppe_agdlp.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
                     </div>
                 </div>
             </div>
 
             <div class="project-card animate-on-scroll">
-                <div class="project-image" aria-hidden="true">💻</div>
+                <div class="project-image" aria-hidden="true">🌐</div>
                 <div class="project-content">
                     <div class="project-header">
-                        <h3 class="project-title">Application de ticketing</h3>
-                        <p class="project-description">Développement d'une application web de gestion de tickets incidents avec interface responsive, système d'authentification et tableau de bord statistiques en temps réel.</p>
+                        <h3 class="project-title">Infrastructure Réseau LAN Cisco</h3>
+                        <p class="project-description">Conception d'une architecture hiérarchisée sous Packet Tracer intégrant des VLANs, le routage inter-VLAN, le protocole Spanning Tree (STP) et la sécurité des ports.</p>
                     </div>
                     <div class="project-tags">
-                        <span class="tag">PHP</span><span class="tag">Symfony</span>
-                        <span class="tag">MySQL</span><span class="tag">Bootstrap</span>
+                        <span class="tag">Cisco</span><span class="tag">VLAN / STP</span>
+                        <span class="tag">Port Security</span><span class="tag">Packet Tracer</span>
                     </div>
                     <div class="project-footer">
-                        <a href="fichiers/ppe3.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                        <a href="fichiers_ppe/ppe_cisco.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
                     </div>
                 </div>
             </div>
 
             <div class="project-card animate-on-scroll">
-                <div class="project-image" aria-hidden="true">🔍</div>
+                <div class="project-image" aria-hidden="true">☁️</div>
                 <div class="project-content">
                     <div class="project-header">
-                        <h3 class="project-title">Audit de sécurité réseau</h3>
-                        <p class="project-description">Réalisation d'un audit complet de sécurité réseau avec tests d'intrusion, analyse de vulnérabilités et rédaction d'un plan d'action avec recommandations détaillées.</p>
+                        <h3 class="project-title">Cloud Privé Collaboratif</h3>
+                        <p class="project-description">Mise en place de Nextcloud hébergé sur Ubuntu via Docker et Nginx Proxy Manager, avec sécurisation renforcée (pare-feu UFW, HTTPS et authentification 2FA).</p>
                     </div>
                     <div class="project-tags">
-                        <span class="tag">Nmap</span><span class="tag">Wireshark</span>
-                        <span class="tag">Metasploit</span><span class="tag">OWASP</span>
+                        <span class="tag">Nextcloud</span><span class="tag">Docker</span>
+                        <span class="tag">Nginx</span><span class="tag">Sécurité 2FA</span>
                     </div>
                     <div class="project-footer">
-                        <a href="fichiers/ppe4.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                        <a href="fichiers_ppe/ppe_cloud_privé.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card animate-on-scroll">
+                <div class="project-image" aria-hidden="true">📦</div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Validation Full-Stack (Virtualisation)</h3>
+                        <p class="project-description">Création d'un laboratoire de test Windows Server 2025 par virtualisation imbriquée (VMware et Hyper-V) et automatisation PowerShell des identités Active Directory.</p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">VMware</span><span class="tag">Hyper-V</span>
+                        <span class="tag">Windows Server</span><span class="tag">PowerShell</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="fichiers_ppe/ppe_virtualisation.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
                     </div>
                 </div>
             </div>
@@ -1156,7 +1213,7 @@
                         <span class="tag">Linux</span><span class="tag">Nginx</span>
                     </div>
                     <div class="project-footer">
-                        <a href="fichiers/ppe5.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                        <a href="fichiers_ppe/ppe5.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
                     </div>
                 </div>
             </div>
@@ -1173,7 +1230,7 @@
                         <span class="tag">NAS</span><span class="tag">Hyper-V</span>
                     </div>
                     <div class="project-footer">
-                        <a href="fichiers/ppe6.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
+                        <a href="fichiers_ppe/ppe6.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">📄 Télécharger PDF</a>
                     </div>
                 </div>
             </div>
@@ -1188,43 +1245,38 @@
         <div class="competences-grid animate-on-scroll">
             <div class="competence-card">
                 <div class="competence-header">
-                    <div class="competence-icon" aria-hidden="true">⚡</div>
-                    <h3>Stockage & Cloud</h3>
+                    <div class="competence-icon" aria-hidden="true">📂</div>
+                    <h3>Gérer le patrimoine</h3>
                 </div>
                 <ul>
-                    <li>NAS / SAN (Synology, TrueNAS, Freebox)</li>
-                    <li>Windows Backup</li>
-                    <li>Azure</li>
-                    <li>Scripts Bash / PowerShell optimisés par IA</li>
-                    <li>C# / .NET</li>
-                    <li>Java</li>
+                    <li>Gestion des droits et GPO (Active Directory)</li>
+                    <li>Configuration de pare-feu (pfSense)</li>
+                    <li>Réseaux & VLANs (Packet Tracer)</li>
+                    <li>Sauvegardes et continuité de service</li>
                 </ul>
             </div>
             <div class="competence-card">
                 <div class="competence-header">
                     <div class="competence-icon" aria-hidden="true">🌐</div>
-                    <h3>Systèmes & Réseaux</h3>
+                    <h3>Support & Services</h3>
                 </div>
                 <ul>
-                    <li>Windows Server 2019 / 2022</li>
-                    <li>Linux (Debian, Ubuntu)</li>
-                    <li>Active Directory / GPO</li>
-                    <li>TCP/IP, DNS, DHCP, VPN</li>
-                    <li>VMware & Hyper-V</li>
-                    <li>Docker</li>
+                    <li>Gestion des tickets d'assistance (Freshservice)</li>
+                    <li>Déploiement et migration de postes/serveurs</li>
+                    <li>Virtualisation (VMware, Hyper-V)</li>
+                    <li>Gestion des habilitations (Qualnet)</li>
                 </ul>
             </div>
             <div class="competence-card">
                 <div class="competence-header">
-                    <div class="competence-icon" aria-hidden="true">🛡️</div>
-                    <h3>Cybersécurité</h3>
+                    <div class="competence-icon" aria-hidden="true">🚀</div>
+                    <h3>Projet & Développement</h3>
                 </div>
                 <ul>
-                    <li>Pare-feu (pfSense)</li>
-                    <li>Analyse de vulnérabilités (Wireshark, Nmap)</li>
-                    <li>Gestion des accès (IAM)</li>
-                    <li>RGPD & Conformité</li>
-                    <li>Sauvegardes & PRA</li>
+                    <li>Automatisation de déploiements (PowerShell, Bash)</li>
+                    <li>Veille technologique et sécurité</li>
+                    <li>Développement de présence en ligne (Portfolio)</li>
+                    <li>Gestion et planification de projets</li>
                 </ul>
             </div>
         </div>
@@ -1255,7 +1307,7 @@
                     <span class="contact-icon" aria-hidden="true">💼</span>
                     <span>LinkedIn</span>
                 </a>
-                <a href="https://github.com/votre-profil" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub">
+                <a href="https://https://github.com/Nolans76" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub">
                     <span class="contact-icon" aria-hidden="true">💻</span>
                     <span>GitHub</span>
                 </a>
@@ -1264,7 +1316,7 @@
     </section>
 
     <footer>
-        <p>© 2025 Nolan Ruby – Portfolio BTS SIO SISR</p>
+        <p>© 2026 Nolan Ruby – Portfolio BTS SIO SISR</p>
     </footer>
 
     <button id="back-to-top" aria-label="Retour en haut de page" title="Retour en haut">↑</button>
@@ -1285,7 +1337,7 @@
             document.querySelectorAll('nav ul > li > a').forEach(a => a.classList.remove('active'));
             if (id === 'page-veille') {
                 document.getElementById('nav-veille')?.classList.add('active');
-            } else if (id === 'page-ppe' || id === 'page-e6') {
+            } else if (id === 'page-ppe' || id === 'page-e6' || id === 'page-e5') {
                 document.getElementById('nav-projets')?.classList.add('active');
             }
 
